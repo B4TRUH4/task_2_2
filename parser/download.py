@@ -19,12 +19,9 @@ def parse_page() -> list[tuple[str, date]]:
         tab = soup.find(
             'div',
             class_='page-content__tabs__block',
-            attrs={'data-tabcontent': '1'}
+            attrs={'data-tabcontent': '1'},
         )
-        blocks = tab.find_all(
-            'div',
-            'accordeon-inner__item'
-        )
+        blocks = tab.find_all('div', 'accordeon-inner__item')
         for block in blocks:
             link, trade_date = parse_link(block)
             if trade_date.year < BREAKPOINT_YEAR:
@@ -50,7 +47,7 @@ def download_file(url: str, filename: str) -> None:
     if os.path.exists(filename):
         print(f'Файл {filename} существует. Пропуск...')
         return
-    print(f"Скачивание {filename}...")
+    print(f'Скачивание {filename}...')
     response = requests.get(url)
     response.raise_for_status()
     with open(filename, 'wb') as f:

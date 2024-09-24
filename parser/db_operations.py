@@ -19,7 +19,7 @@ def save_trading_results(df: pd.DataFrame, trade_date: datetime.date) -> None:
             volume=row['объем договоров в единицах измерения'],
             total=row['обьем договоров, руб.'],
             count=row['количество договоров, шт.'],
-            date=trade_date
+            date=trade_date,
         )
         session.add(trading_result)
     session.commit()
